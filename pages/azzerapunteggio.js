@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 
-function sendClick(squad) {
+function sendClick() {
     fetch("/api/punteggio", {
-        method: 'delete',
-        body: JSON.stringify({
-            data: "delete"
-        })
+        method: 'delete'
     })
 }
 
@@ -23,7 +20,7 @@ export default function Home() {
             <button
                 type="button"
                 style={{ marginTop: "50px" }}
-                onClick={sendClick()}
+                onClick={sendClick}
             >
                 Azzera
             </button>

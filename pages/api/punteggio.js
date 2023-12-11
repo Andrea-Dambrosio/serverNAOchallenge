@@ -33,6 +33,8 @@ export default function handler(req, res) {
         case "DELETE":
             punteggioBlu = 0
             punteggioRossi = 0
+            console.warn("PUNTEGGIO AZZERATO")
+            res.status(200).json({ text: 'Punteggio azzerato' });
             break
         default:
             res.status(405).json({ text: 'Method not allowed' });
