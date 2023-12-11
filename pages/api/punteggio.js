@@ -3,32 +3,39 @@ let punteggioBlu = 0;
 let punteggioRossi = 0;
 
 export default function handler(req, res) {
-    if (req.method === 'GET') {
+    switch (req.method) {
 
-        res.status(200).json({ 
-            blu: punteggioBlu,
-            rossi: punteggioRossi
-        });
+        case "GET":
+            res.status(200).json({
+                blu: punteggioBlu,
+                rossi: punteggioRossi
+            });
+            break
 
-    } else if (req.method === 'POST') {
-        const squad = JSON.parse(req.body).squad
-        switch(squad){
+        case "POST":
+            const squad = JSON.parse(req.body).squad
+            switch (squad) {
 
-            case "blu":
-                punteggioBlu++
-                break
-            case "rossi":
-                punteggioRossi++
-                break
-            default:
-                res.status(400).json({ text: 'Bad Request'}); 
-                break
-        }
-        console.log(`Squadra blu: ${punteggioBlu} \n Squadra rossa: ${punteggioRossi}`)
+                case "blu":
+                    punteggioBlu++
+                    break
+                case "rossi":
+                    punteggioRossi++
+                    break
+                default:
+                    res.status(400).json({ text: 'Bad Request' });
+                    break
+            }
+            console.log(`Squadra blu: ${punteggioBlu} \n Squadra rossa: ${punteggioRossi}`)
 
-        res.status(200).json({ text: 'Punteggio aggiornato correttamente' + punteggioBlu + "+ "+ punteggioRossi });
-
-    } else {
-        res.status(405).json({ text: 'Method not allowed' });
+            res.status(200).json({ text: 'Punteggio aggiornato correttamente' + punteggioBlu + "+ " + punteggioRossi });
+            break
+        case "DELETE":
+            punteggioBlu = 0
+            punteggioRossi = 0
+            break
+        default:
+            res.status(405).json({ text: 'Method not allowed' });
+            break
     }
 }
