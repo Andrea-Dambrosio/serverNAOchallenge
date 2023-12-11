@@ -3,12 +3,15 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "start": "next start"
+    "start": "node server.js"
   },
   "dependencies": {
+    "net": "^1.0.2",
     "next": "latest",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "request": "^2.88.2",
+    "ws": "^8.15.0"
   },
   "engines": {
     "node": ">=18"
