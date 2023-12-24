@@ -1,29 +1,21 @@
-// pages/first-page.js
 import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client';
 
+const socket = io(`ws://${process.env.LOCALHOST_IP}:3001`, { auth: { token: "Visualizza Punteggio" } });
 
 export default function Page() {
     const [punteggioBlu, setBlu] = useState(0);
-    const [punteggioRossi, setRossi] = useState(0)
-
+    const [punteggioRossi, setRossi] = useState(0);
+    
     useEffect(() => {
-        const fetchPunteggio = async () => {
-            const response = await fetch('/api/punteggio');
-            const data = await response.json();
+        // Listen for incoming messages
+        socket.on('recive point', (data) => {
             setBlu(data.blu);
-            setRossi(data.rossi);
-        };
-
-        // Effettua la prima richiesta al caricamento della pagina
-        fetchPunteggio();
-
-        // Imposta un intervallo per effettuare richieste periodicamente
-        const intervalId = setInterval(fetchPunteggio, 500); // Ogni 5 secondi, ad esempio
-
-        // Pulisci l'intervallo quando il componente viene smontato
-        return () => clearInterval(intervalId);
+            setRossi(data.rossi)
+        });
     }, []);
 
+    
     return (
         <>
             <h1>Punteggio Blu: {punteggioBlu}</h1>
@@ -37,4 +29,3 @@ export const getServerSideProps = async () => {
         props: {},
     };
 };
-

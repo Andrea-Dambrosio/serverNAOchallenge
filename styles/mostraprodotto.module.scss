@@ -1,0 +1,103 @@
+/* styles/mostraprodotto.module.css */
+/* styles/mostraprodotto.module.css */
+
+
+
+
+.text {
+
+    /* mix-blend-mode: difference; */
+    margin: auto;
+    font-family: 'Anton', sans-serif;
+    color: white;
+    display: block;
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    text-rendering: optimizeLegibility;
+
+}
+
+#video {
+    width: -webkit-fill-available;
+    height: fit-content;
+    margin: auto;
+
+}
+
+/* Add your gradient styles here */
+
+
+
+$green: #7ceaa4;
+$purple: #3b3d54;
+
+// :global(*) {
+//     box-sizing: border-box;
+// }
+
+@keyframes gradient {
+    from {
+        background-position: center;
+        background-size: 100% 100%;
+    }
+
+    to {
+        background-position: right;
+        background-size: 150% 150%;
+    }
+}
+
+#mainDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    animation: gradient 4s ease-in-out alternate infinite;
+    background: rgb(131, 58, 180);
+    background: linear-gradient(45deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    background-size: 100% 100%;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes nao {
+    from {
+        transform: scale(1);
+        transform: translateY(0);
+    }
+
+    to {
+        transform: scale(1.5);
+        transform: translateY(10%);
+
+    }
+
+
+}
+
+#naoImage {
+    position: absolute;
+    height: 40%; // o qualsiasi altro valore che desideri
+    width: fit-content; // mantiene le proporzioni dell'immagine 
+    left: 5%;
+
+}
+
+.imageProportion {
+
+    height: 100%; // o qualsiasi altro valore che desideri
+    width: auto; // mantiene le proporzioni dell'immagine
+    object-fit: contain; // mantiene le proporzioni dell'immagine
+    left: 5%;
+}
+
+.img_transition {
+    transition: opacity 0.4s ease-out;
+    -webkit-transition: opacity 0.4s ease-out;
+    -moz-transition: opacity 0.4s ease-out;
+    -ms-transition: opacity 0.4s ease-out;
+    -o-transition: opacity 0.4s ease-out;
+    opacity: 0;
+}

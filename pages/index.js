@@ -1,25 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import io from 'socket.io-client';
+import Link from 'next/link'
 
-function sendClick(squad) {
-  fetch("/api/punteggio", {
-    method: 'post',
-    body: JSON.stringify({
-      squad: squad
-    })
-  })
-}
 
 export default function Home() {
-  const [selectedSquad, setSelectedSquad] = useState("blu");
-
-  const handleButtonClick = () => {
-    sendClick(selectedSquad);
-  };
-
-  const handleSelectChange = (event) => {
-    setSelectedSquad(event.target.value);
-  };
 
   return (
     <>
@@ -27,21 +12,12 @@ export default function Home() {
         <title>Conta Punteggio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <h1>Conta punteggio da cestino</h1>
-      <p>Seleziona Squadra</p>
-
-      <select id="squad" value={selectedSquad} onChange={handleSelectChange}>
-        <option value="blu">Squadra Blu</option>
-        <option value="rossi">Squadra Rossi</option>
-      </select>
-
-      <button
-        type="button"
-        style={{ marginTop: "50px" }}
-        onClick={handleButtonClick}
-      >
-        PUNTO!
-      </button>
+      <h1>Server NAOCHALLENGE 2023</h1>
+      <h2>INDIRIZZO IP SERVER: {process.env.LOCALHOST_IP}</h2>
+      <h3>PORTA SERVER: 3000 <br /> PORTA SOCKET: 3001</h3>
+      <Link target="_blank" href="./punteggio.js">Punteggi gioco cestino Real Time</Link><br></br>
+      <Link target="_blank" href="./controlpanel.js">Pannello di Controllo</Link><br></br>
+      <Link target="_blank" href="./aggiungipunti.js">Aggiungi punti Gioco Cestini</Link><br></br>
     </>
   );
 }

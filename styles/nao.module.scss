@@ -1,0 +1,40 @@
+@keyframes toLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
+}
+
+@keyframes fromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.toLeft{
+    animation: toLeft 3s ease-in;
+}
+
+.fromRight{
+    animation: fromRight 2.5s ease-in-out;
+}
+.content{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+}
+.animationBox{
+    margin:auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: absolute; 
+}

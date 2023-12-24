@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&display=swap');
+$blue: #006effef;
+//titolo
+$font: "Arial";
+#title {
+    text-align: center;
+    color:white;
+    font-size: 50px;
+    font-family: $font;
+    font-weight: bold;
+    margin-top: 15px;
+} 
+//Animazione per blocco form
+@keyframes fluttua{
+    from {transform: translateY(0px);}
+    to {transform: translateY(-38px);}
+}
+//Stile per blocco form
+#box {
+    --wrapper_width: 35%;
+    --wrapper_height: 90%;
+    height: var(--wrapper_height);
+    border: 4.5px dashed #ffffff;
+    position:absolute;
+    top: calc(50% - (var(--wrapper_height) / 2));
+    left: calc(50% - (var(--wrapper_width) / 2));
+    border-radius: 60px;
+    width: var(--wrapper_width);
+    margin: auto;
+    display: flex-start;
+    justify-content: center;
+    box-shadow: 30px 30px 45px 30px rgba(0, 0, 0, 0.614);
+    background-color: rgba(35, 35, 35, 0.936);
+    animation: fluttua 2.3s ease-in-out alternate infinite;
+
+}
+//Stile generico form
+#form {
+    color: white;
+    font-size: 20px;
+    font-family: $font;
+}
+
+.formGroup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.label{
+    font-size: 20px;
+}
+
+//Checkbox
+.checkDiv{
+    width: 108%;
+    display: flex;
+    
+  justify-content: space-around;
+}
+//Elimino default di brwser
+
+.checkbox{
+    $dim: 17px;
+    margin-right: 8px;
+    appearance: none;
+    height: $dim;
+    width: $dim;
+    background-color: transparent;
+    border: 3.5px solid white;
+    margin-bottom:-1.5px;
+}
+.checkbox:checked {
+    $dim: 20px;
+    height: $dim;
+    width: $dim;
+    background-color: #003cff53;
+    border: 4px solid $blue;
+    margin-bottom:-4.5px;
+}
+//Fine checkbox
+
+//text
+.text{
+    font-size: 20px;
+    font-family: $font;
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.126);
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 40px;
+    margin-top: 10px;
+    width: 90%;
+    margin-top:  0px;
+    box-shadow: none;
+    outline: dashed 4px rgb(0, 89, 255);
+    border: none;
+}
+.text::placeholder {
+  color: gainsboro;
+  opacity: 1; /* Firefox */
+}
+
+
