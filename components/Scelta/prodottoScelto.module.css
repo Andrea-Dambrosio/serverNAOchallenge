@@ -20,9 +20,7 @@
     display: inline-block;
     margin-left: 7%;
     margin-right: 7%;
-        animation: image 2s alternate infinite ease-in-out;
-
-    
+    animation: image 2s alternate infinite ease-in-out; 
 }
 @keyframes image {
     from {

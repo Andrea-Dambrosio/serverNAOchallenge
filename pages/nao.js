@@ -19,7 +19,7 @@ export default function Page() {
   const [transictionClass, setClass] = useState();
   useEffect(() => {
     // Listen for incoming messages
-    socket.on("modulo", () => { console.log("Show"); show("form", "default") });
+    socket.on("modulo", () => { show("form", "default") });
     socket.on("risposta", (form) => { show("form", form)})
     socket.on("prodottoScelto", (id) => { show("prodotto", id)})
 
