@@ -40,18 +40,21 @@ const io = new Server(server, {
             io.emit("modulo")
         })
 
-        socket.on("counterzero", () => {
-            io.to("api/app").emit("counterzero");
+        socket.on("prodottoScelto", (id) => {
+            io.emit("prodottoScelto", id)
         })
-
         socket.on('disconnect', () => {
             console.log(`SOCKET: ${nome} disconnesso. Ip: ${connIp} Id: ${socket.id}`)
+        });
+        socket.on('connect_error', (error) => {
+            io.emit("modulo", error)
+            console.log(error);
         });
 
     });
     
 
 server.listen(3001,'0.0.0.0', () => {
-    console.log(`Socket server listening on ${process.env.LOCALHOST_IP}:3001`)
+    console.log(`Socket server listening on :3001`)
 });
 

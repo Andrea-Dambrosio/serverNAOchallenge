@@ -80,6 +80,9 @@ export default function Form(props) {
             <div id={styles.box}>
                 <div>
                     <h1 id={styles.title}>Scelta Prodotto</h1>
+                    <h2 id={styles.subtitle}>
+                        NAO ti aiuterà a scegliere il prodotto
+                    </h2>
                     <form id={styles.form}>
                         {defaultItems.map(mapFunction)}
                     </form>

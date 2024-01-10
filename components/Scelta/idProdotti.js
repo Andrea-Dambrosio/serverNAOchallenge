@@ -1,0 +1,23 @@
+const productsId = {
+    64: "Caciocavallo",
+    86: "Scamorza",
+    80: "Ricotta Salata",
+    84: "Fior di ricotta",
+    85: "Caciocavallo affumicato",
+    107: "Fior di ricotta",
+    108: "Mozzarella di bufala",
+    112: "Treccia",
+    119: "Cacioricotta di capra",
+    114: "Caso re vacca",
+    11: "Fiordilatte",
+    12: "Mozzarella nella mortella",
+    13: "Caciocavallo aglianico",
+    14: "Scamorza affumicata",
+    15: "Provolone Cilento",
+    16: "Bocconcino bufala",
+    17: "Maxi mozzarella bufala",
+    18: "Bufala con cuore olio",
+    1: "Fior di ricotta",
+    2: "mozzarella",
+}
+export default productsId;
