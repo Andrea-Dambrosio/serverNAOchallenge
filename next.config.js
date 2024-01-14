@@ -3,6 +3,7 @@
 module.exports = {
     env: {
         LOCALHOST_IP: process.env.LOCALHOST_IP,
+        DEBUG: 'socket.io:*'
     },
 
 

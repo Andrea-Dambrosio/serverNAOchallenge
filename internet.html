@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAO</title>
+</head>
+<body>
+    <h1 id="id">ID</h1>
+    <script>
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+                get: (searchParams, prop) => searchParams.get(prop),
+            });
+            const id = params.id;
+        fetch("https://nao-challenge-2024.loca.lt", {
+                method: "POST",
+                body: JSON.stringify({
+                    id: id,
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    'bypass-tunnel-reminder': '1'
+                }
+            })
+                .then((response) => response.json())
+                .then((json) => document.getElementById("id").innerText = json);
+    </script>
+</body>
+</html>
