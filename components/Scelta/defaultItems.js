@@ -32,30 +32,24 @@
     },
     {
       // 5
-      label: "Preferisci un gusto intenso o delicato?",
-      value: "",
-      type: "text",
-    },
-    {
-      // 6
       label: "Ti piacerebbe spalmabile?",
       value: null,
       type: "checkbox",
     },
     {
-      // 7
+      // 6
       label: "Ti piacerebbe qualcosa di particolare?",
       value: null,
       type: "checkbox",
     },
     {
-      // 8
+      // 7
       label: "Qualcosa con olio d'oliva?",
       value: null,
       type: "checkbox",
     },
     {
-      // 9
+      // 8
       label: "Piccolo medio o grande?",
       value: "",
       type: "text",

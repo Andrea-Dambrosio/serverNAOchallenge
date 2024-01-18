@@ -49,7 +49,7 @@ const risposte = {
             case "capra":
                 risposte.deactivate.linear(1);
                 risposte.items[1].value = "Capra";
-                return [risposte.items, "cacioricottaCapra"];
+                return [risposte.items, "prodotto_scelto" ,[119]]; //cacioricotta capra
 
             case "bufala":
                 risposte.items[1].value = "Bufala";
@@ -64,11 +64,13 @@ const risposte = {
 
             case "mucca":
                 risposte.items[1].value = "Mucca";
+                risposte.risposte.push("mucca");
                 if (risposte.risposte[0] == true) {
                     risposte.items[3].value = "Intenso";
                     risposte.next = "stagionatura";
                 } else {
-                    risposte.deactivate.linear(8);
+                    risposte.deactivate.linear(7);
+                    risposte.deactivate.point([3, 4]);
                     risposte.next = "stagionatura";
                 }
                 break;
@@ -85,23 +87,25 @@ const risposte = {
                 risposte.items[3].value = "Intenso";
 
                 if (risposte.risposte[0] == true) {
-                    return [risposte.items, "scamorza"];
+                    return [risposte.items, "prodotto_scelto", [86]];
                 }
-                risposte.deactivate.linear(6)
-                risposte.next = "stagionatura";
+                
+                    risposte.deactivate.linear(5)
+                    risposte.next = "stagionatura";
                 break;
 
             case "delicato":
                 risposte.items[3].value = "Delicato";
                 if (risposte.risposte[0] == true) {
-                    return [risposte.items, "mozzarellabufala"];
+                    return [risposte.items, "prodotto_scelto", [108]];
                 }
-                risposte.deactivate.point([4])
-                risposte.items[2].value = "Fresco";
+                risposte.deactivate.point([4, 2])
+                // risposte.items[2].value = "Fresco";
                 risposte.next = "spalmabile";
                 break;
             default:
                 return "errore"
+                break
 
         }
         return risposte.items;
@@ -113,29 +117,29 @@ const risposte = {
                 risposte.items[2].value = "Stagionato";
 
                 if (risposte.risposte[0] == true)
-                    return [risposte.items, "caciocavallo"];
+                    return [risposte.items, "prodotto_scelto", [64]]; //caciocavallo
 
                 if (risposte.risposte[1] == "bufala")
                     risposte.next = "piccante";
 
                 if (risposte.risposte[1] == "mucca") {
-                    risposte.deactivate.point([6])
+                    risposte.deactivate.point([5])
                     risposte.next = "particolare";
                 }
-
                 break;
             case "fresco":
                 risposte.items[2].value = "Fresco";
                 if (risposte.risposte[0] == true || risposte.risposte[1] == "bufala") {
-                    risposte.deactivate.linear(6)
+                    risposte.deactivate.linear(5)
                     risposte.deactivate.point([4])
-                    return [risposte.items, "scamorza"];
+                    return [risposte.items, "prodotto_scelto", [86]]; //scamorza
                 }
-                risposte.deactivate.point([7])
+                risposte.deactivate.point([6])
                 risposte.next = "spalmabile";
                 break;
                 default:
-                    return "errore"
+                return "errore"
+                break;
         }
         return risposte.items;
     },
@@ -144,86 +148,87 @@ const risposte = {
         if (risposta == "si") {
             risposte.items[4].value = true;
             risposte.risposte.push(true);
-            return [risposte.items, "caciocavalloPeperoncino"];
+            return [risposte.items, "prodotto_scelto", [112]]; //caciocavallo peperoncino
         }
         if (risposta != "no") return "errore"
         risposte.items[4].value = false;
         risposte.risposte.push(false);
-        return [risposte.items, "ricottaSalata"];
+        return [risposte.items, "prodotto_scelto", [80]]; //ricotta salata
     },
 
     spalmabile: (risposta) => {
-
-        if( risposta != "si " && risposta != "no") return "errore"
+        
         if (risposta == "si") {
-            risposte.items[6].value = true;
+            risposte.items[5].value = true;
             risposte.risposte.push(true);
             if (risposte.risposte[1] == "bufala") {
-                deactive.linear(7)
-                return [risposte.items, "fior_ricotta"];
+                risposte.deactivate.linear(6)
+                return [risposte.items, "prodotto_scelto", [84]]; //fior di ricotta
             }
 
-            return [risposte.items, "Caso re vacca"];
+            return [risposte.items, "prodotto_scelto", [4]]; //caso re vacca
 
         }
-        risposte.items[6].value = false;
+        if (risposta != "no") return "errore"
+        risposte.items[5].value = false;
         risposte.risposte.push(false);
         if (risposte.risposte[1] == "bufala") {
             risposte.next = "particolare";
         }
         else {
-            return [risposte.items, "fiordilatte"];
+            return [risposte.items, "prodotto_scelto", [130]]; //fiordilatte
         }
-        risposte.items[6].value = false;
+        risposte.items[5].value = false;
         risposte.risposte.push(false);
         return risposte.items
     },
 
     particolare: (risposta) => {
         if (risposta == "si") {
-            risposte.items[7].value = true;
+            risposte.items[6].value = true;
             if (risposte.risposte[1] == "bufala") {
-                deactivate.point([9])
+                risposte.deactivate.point([8])
                 risposte.next = "olio";
                 return risposte.items
             }
-            return [risposte.items, ["caciotta", "scamorzaAffumicata"]];
+            return [risposte.items, "prodotto_scelto", [187, 14]]; //caciocavallo affinato, scamorza affumicata
         }
         if(risposta != "no") return "errore"
-        risposte.items[7].value = false;
+        risposte.items[6].value = false;
         if (risposte.risposte[1] == "bufala") {
-            deactivate.point([8])
+            risposte.deactivate.point([7])
             risposte.next = "grandezza";
             return risposte.items
         }
-        return [risposte.items, "provoloneCilento"];
+        return [risposte.items, "prodotto_scelto", [107]]; //provolone cilento
     },
     olio: (risposta) => {
-        risposte.deactivate.point([9])
+        risposte.deactivate.point([8])
 
         if (risposta == "si") {
-            risposte.items[8].value = true;
-            return [risposte.items, "bufalaCuoreOlio"];
+            risposte.items[7].value = true;
+            return [risposte.items, "prodotto_scelto", [114]]; //bufala cuore olio
         }
         if(risposta != "no" ) return "errore"
-        risposte.items[8].value = false;
-        return [risposte.items, ["mozzarellaMortella", "trecciaBufala"]];
+        risposte.items[7].value = false;
+        return [risposte.items, "prodotto_scelto", [170, 8]]; //mozzarella mortella, treccia bufala
 
     },
     grandezza: (risposta) => {
-        risposte.deactivate.point([8])
+        risposte.deactivate.point([7])
         switch (risposta) {
             case "piccolo":
-                risposte.items[9].value = "Piccolo";
-                return [risposte.items, "bocconciniBufala"];
+                risposte.items[8].value = "Piccolo";
+                return [risposte.items, "prodotto_scelto", [85]]; //bocconcini bufala
             case "medio":
-                risposte.items[9].value = "Medio";
-                return [risposte.items, "mozzarellaBufala"];
+                risposte.items[8].value = "Medio";
+                return [risposte.items, "prodotto_scelto", [108]]; //mozzarella bufala
             case "grande":
-                risposte.items[9].value = "Grande";
-                return [risposte.items, "maxiMozzarella"];
+                risposte.items[8].value = "Grande";
+                return [risposte.items, "prodotto_scelto", [17]]; //Maxi mozzarella bufala
             default:
                 return "errore"
+                break;
         }
     },
 
@@ -246,13 +251,12 @@ const sceltaProdotto = {
         res.status(200).end("Risposta non valida")
         return
     }
-    if (typeof items[1] != "string") this.socket.emit("risposta", items);
+    if (items[1] != "prodotto_scelto") this.socket.emit("risposta", items);
     else {
-        console.log(items[1]);
         this.socket.emit("risposta", items[0]);
-        this.socket.emit("prodottoScelto", items[1]);
+        this.socket.emit("prodottoScelto", items[2]);
         res.status(200).end("Il prodotto è stato scelto");
-        return items[1]
+        return items[2]
         }
         res.status(200).end("Risposta inviata correttamente alla pagina");
         return

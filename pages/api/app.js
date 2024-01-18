@@ -10,7 +10,8 @@ const response = {
     post: function(req,res){
     try {
         if (req.body.tipo == "informazioni") {
-            informazioni(req.body.id);
+            //informazioni(req.body.id);
+            console.log("infomrazioni")
             return;
         }
         this.prodottoSelezionato = sceltaProdotto.scelta(
@@ -22,11 +23,11 @@ const response = {
         console.log("\x1b[31m", "api/app: " + e);
     }
     },
-    get: function(res,req){
+    get: function(req, res){
         if(this.prodottoSelezionato == undefined){
-            return this.res.status(405).end("Prodotto ancora non identificato")
+            return res.status(400).end("Prodotto ancora non identificato")
         }
-        return this.res.status(200).end(this.prodottoSelezionato)
+        return res.status(200).end(JSON.stringify({id: this.prodottoSelezionato}))
     }
 }
 export default function Handle(req, res) {
