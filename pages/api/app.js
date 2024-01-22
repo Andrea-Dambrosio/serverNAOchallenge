@@ -9,9 +9,8 @@ sceltaProdotto.setSocket(socket)
 const response = {
     post: function(req,res){
     try {
-        if (req.body.tipo == "informazioni") {
-            //informazioni(req.body.id);
-            console.log("infomrazioni")
+        if (req.body.tipo != "scelta_prodotto") {
+            res.status(400).end("Tipo non valido")
             return;
         }
         this.prodottoSelezionato = sceltaProdotto.scelta(
@@ -42,11 +41,6 @@ export default function Handle(req, res) {
         res.status(405).end("Method not allowed");
     }
 
-}
-
-function informazioni(id) {
-    socket.emit("informazioni", id);
-    res.status(200).end("Informazioni Ricevute");
 }
 
 

@@ -9,7 +9,7 @@ const server = http.createServer();
 const io = new Server(server, {
     cors: {
         origin: '*',
-    },
+    }, 
 });
 
     io.on('connection', (socket) => {
@@ -39,9 +39,13 @@ const io = new Server(server, {
         socket.on("modulo", () => {
             io.emit("modulo")
         })
-
+        //funzione per mostrare prodotto scelto
         socket.on("prodottoScelto", (id) => {
             io.emit("prodottoScelto", id)
+        })
+        //informazione prodotto
+        socket.on("informazioni", (id) => {
+            io.emit("informazioni", id)
         })
         socket.on('disconnect', () => {
             console.log(`SOCKET: ${nome} disconnesso. Ip: ${connIp} Id: ${socket.id}`)

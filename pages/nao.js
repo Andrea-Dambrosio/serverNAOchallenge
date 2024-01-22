@@ -6,7 +6,7 @@ import Sfondo from "../components/Attesa/Sfondo";
 import Attesa from "../components/Attesa/Attesa";
 import Form from "../components/Scelta/Form";
 import ProdottoScelto from "../components/Scelta/ProdottoScelto";
-import Presentazione from "../components/Scelta/ProdottoScelto";
+import Presentazione from "../components/Informazioni/Presentazione";
 
  const socket = io(`ws://${process.env.LOCALHOST_IP}:3001`, {
    auth: { token: "nao" },
@@ -59,9 +59,11 @@ export default function Page() {
         setTimeout(() => {animation(<ProdottoScelto ids={data} />)}, 1000)
         break;
       case "presentazione":
-        setTimeout(() => { animation(<ProdottoScelto ids={data} />) }, 1000)
+        console.log(data)
+        setTimeout(() => { animation(<Presentazione/>) }, 1000)
       default:
         console.log("default");
+        break;
     }
   }
 
@@ -82,3 +84,10 @@ export const getServerSideProps = async () => {
     props: {},
   };
 };
+function Video() {
+  return <video width="1000" height="240" controls={false}>
+    <source src="\video\video.mov" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>;
+}
+

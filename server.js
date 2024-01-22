@@ -13,7 +13,7 @@ const localhostAddress = ip.address();
 // Salva l'indirizzo IP in una variabile ambientale
 process.env.LOCALHOST_IP = localhostAddress;
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 app.prepare().then(async () => {
 
