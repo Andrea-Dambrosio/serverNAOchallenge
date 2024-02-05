@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 import sceltaProdotto from "../../components/Api/risposte";
-const socket = io(`ws://${process.env.LOCALHOST_IP}:3001`, {     auth: { token: "api/app" },
+const socket = io(`ws://127.0.0.1:3001`, {     auth: { token: "api/app" },
 });
 
 
@@ -26,7 +26,8 @@ const response = {
         if(this.prodottoSelezionato == undefined){
             return res.status(400).end("Prodotto ancora non identificato")
         }
-        return res.status(200).end(JSON.stringify({id: this.prodottoSelezionato}))
+        socket.emit("informazioni", this.prodottoSelezionato);
+        return res.status(200).end(this.prodottoSelezionato[0])
     }
 }
 export default function Handle(req, res) {

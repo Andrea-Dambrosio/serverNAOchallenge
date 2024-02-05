@@ -16,7 +16,7 @@ const bodyParser = require('body-parser')
     app.post('/', (req, res) => {
         console.log(req.body.id)
         res.send(JSON.stringify("ID prodotto: " + req.body.id));
-        fetch(`http://${process.env.LOCALHOST_IP}:3000/api/qr`, {
+        fetch(`http://127.0.0.1:8000/api/informazioni`, {
             
             method: 'POST',
             headers: {
@@ -26,12 +26,15 @@ const bodyParser = require('body-parser')
         });
     });
 
-    // Avvia il server Express sulla porta 3002
+    // Avvia il server Express sulla porta 4000
     app.listen(4000, () => {
 
         localtunnel({ port: 4000, subdomain: 'nao-challenge-2024'})
             .then(tunnel => {
                 console.log(`Tunnel is open at ${tunnel.url}`);
+                (tunnel.url != 'https://nao-challenge-2024.loca.lt')
+                    subdomain(tunnel.url)
+                
 
                 tunnel.on('error', (err) => {
                     console.log(err);
@@ -49,3 +52,36 @@ const bodyParser = require('body-parser')
                 console.error('Error while creating tunnel:', err);
             });
     });
+
+function subdomain(url) {
+    const ftpClient = require('ftp-client'),
+    config = {
+        host: 'ftp.controllivallouno.netsons.org',
+        port: 21,
+        user: 'publichtml@controllivallouno.netsons.org',
+        password: 'k1BG[c!WOxoZ'
+    },
+        options = {
+            logging: 'basic',
+            overwrite: 'all'
+        },
+        client = new ftpClient(config, options);
+
+    client.connect(function () {
+        const fs = require('fs');
+        const localFilePath = 'url.txt';
+        const remoteFilePath = '';
+
+        fs.writeFileSync(localFilePath, url);
+
+        console.log("Modifico l'url del tunnel su server in internet")
+        client.upload([localFilePath], remoteFilePath, {
+            baseDir: '',
+            overwrite: 'all'
+        }, function (result) {
+            console.log(result);
+        });
+});
+    
+
+}

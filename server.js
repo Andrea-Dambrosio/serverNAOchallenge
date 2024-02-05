@@ -24,6 +24,7 @@ app.prepare().then(async () => {
         handle(req, res, parsedUrl);
     }).listen(PORT, '0.0.0.0', (err) => {
         if (err) throw err;
+        console.log("\x1b[32m", `ASSICURATI CHE l'IP NON SIA GIa' IN USO DA UN ALTRO SERVER, E CHE IL SUBSET MASK SIA CORRETTO`);
         console.log("\x1b[32m", `Web server ready on ${localhostAddress}:${PORT} `);
     });
 });

@@ -8,7 +8,7 @@ import Form from "../components/Scelta/Form";
 import ProdottoScelto from "../components/Scelta/ProdottoScelto";
 import Presentazione from "../components/Informazioni/Presentazione";
 
- const socket = io(`ws://${process.env.LOCALHOST_IP}:3001`, {
+ const socket = io(`ws://127.0.0.1:3001`, {
    auth: { token: "nao" },
  });
 
