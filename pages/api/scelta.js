@@ -27,9 +27,10 @@ const response = {
             return res.status(400).end("Prodotto ancora non identificato")
         }
         socket.emit("informazioni", this.prodottoSelezionato);
-        return res.status(200).end(this.prodottoSelezionato[0])
+        return res.status(200).end(JSON.stringify(this.prodottoSelezionato[0]))
     }
 }
+
 export default function Handle(req, res) {
     switch (req.method) {
         case "POST":

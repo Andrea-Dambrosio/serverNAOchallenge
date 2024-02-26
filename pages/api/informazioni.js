@@ -9,7 +9,7 @@ export default function Handle(req, res) {
    if(req.method == "POST"){
     console.log("ID ricevuto da qr code: " + req.body.id)
     currentId = req.body.id;
-    res.status(200).end("OK");
+    res.status(200).end("OK"); 
    }
     else{
         if(currentId == null){

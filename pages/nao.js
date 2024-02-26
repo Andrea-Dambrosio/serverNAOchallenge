@@ -18,10 +18,11 @@ export default function Page() {
       <Attesa />
   );
   const [transictionClass, setClass] = useState();
+
   useEffect(() => {
     // Listen for incoming messages
     socket.on("modulo", () => { show("form", "default") });
-    socket.on("risposta", (form) => { show("form", form); console.log("risposta") })
+    socket.on("risposta", (form) => { show("form", form) })
     socket.on("prodottoScelto", (id) => { show("prodotto", id)})
     socket.on("informazioni", (id) => { show("presentazione", id)})
 
@@ -46,8 +47,6 @@ export default function Page() {
     else{
       setContent(<Form items={data} />);
     }
-    
-    
   }
   //sceglie cosa mostrare
   function show(component, data) {
@@ -72,7 +71,6 @@ export default function Page() {
       <Head></Head>
       <content className={styles.content}>
         <Sfondo />
-
         <div className={[transictionClass, styles.animationBox].join(' ')}>{contentDisplayed}</div>
       </content>
     </>

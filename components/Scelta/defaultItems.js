@@ -4,7 +4,7 @@
       // 0
       label: "Sei intollerante al lattosio?",
       value: null,
-      type: "checkbox",
+      type: "checkbox", 
     },
     {
       // 1

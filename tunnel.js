@@ -32,7 +32,6 @@ const bodyParser = require('body-parser')
         localtunnel({ port: 4000, subdomain: 'nao-challenge-2024'})
             .then(tunnel => {
                 console.log(`Tunnel is open at ${tunnel.url}`);
-                (tunnel.url != 'https://nao-challenge-2024.loca.lt')
                     subdomain(tunnel.url)
                 
 

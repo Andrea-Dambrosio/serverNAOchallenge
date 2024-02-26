@@ -6,7 +6,7 @@ const risposte = {
     items: structuredClone(defaultItems),
     reset: function () {
         this.next = "lattosio";
-        this.risposte = [];
+        this.risposte = []; 
         this.items = structuredClone(defaultItems)
     },
     callNext: function (risposta) {
@@ -18,7 +18,7 @@ const risposte = {
             indexes.forEach((index) => {
                 risposte.items[index].value = "deactive";
             });
-        },
+        }, 
 
         linear: function (startIndex) {
             risposte.items.forEach((item, index) => {
