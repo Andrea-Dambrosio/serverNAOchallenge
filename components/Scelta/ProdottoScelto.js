@@ -19,7 +19,7 @@ function mapFunction(id, key) {
             style={{ animationDelay: number() }}
         >
             <img
-                src={`images/prodotti/${productsId[id] + ".jpg"}`}
+                src={`images/prodotti/${productsId[id] + ".png"}`}
                 width="100%"
                 height="100%"
                
