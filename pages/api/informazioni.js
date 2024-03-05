@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 const socket = io(`ws://127.0.0.1:3001`, {
-    auth: { token: "api/qr" },
+    auth: { token: "api/informazioin" },
 });
 
 let currentId = null;   
@@ -19,7 +19,7 @@ export default function Handle(req, res) {
         else{
             res.status(200).end(currentId);
             socket.emit("informazioni", currentId);
-            console.log("api/qr: id ricevuto " + currentId)
+            console.log("api/informazioni: id ricevuto " + currentId)
             res.status(200).json({ response: 'id ricevuto correttamente da qr' })
             currentId = null
             bool = true
